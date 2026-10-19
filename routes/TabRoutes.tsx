@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import HomeScreen from "../screens/HomeScren"
 
 const Tab = createBottomTabNavigator();
 
@@ -16,13 +17,17 @@ export function TabRoutes() {
     return(
         <Tab.Navigator
             screenOptions={{
+                headerShown: false,
                 tabBarStyle: {
-                    paddingBottom: insets.bottom,
-                    paddingTop: insets.top
+                    height: 45
+                     + insets.bottom,
+                    paddingBottom: 5,
+                    paddingTop: insets.top,
+                    overflow: 'visible',
                 }
             }}
         >
-            <Tab.Screen name="Tela Vazia" component={TelaVazia} />
+            <Tab.Screen name="Tela Inicial" component={HomeScreen} />
         </Tab.Navigator>
     )
 }
