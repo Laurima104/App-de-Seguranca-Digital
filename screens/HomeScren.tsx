@@ -7,6 +7,9 @@ const HomeScreen: React.FC = () => {
       <View style={globalStyles.titulo_container}>
         <Text style={globalStyles.titulo}>Home Screen</Text>
       </View>
+      <View style={globalStyles.container}>
+        <Text style={globalStyles.conteudo}>Testando</Text>
+      </View>
     </View>
   );
 }

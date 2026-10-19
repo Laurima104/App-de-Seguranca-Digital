@@ -23,7 +23,10 @@ export const globalStyles = StyleSheet.create({
     color: '#EDE9F8',
   },
   conteudo:{
-
+    color: '#EDE9F8',
+    fontSize: 45,
+    textAlign: 'center',
+    font: 'Electrolize',
   },
   titulo_container:{
     backgroundColor: "#9356F1",
@@ -33,5 +36,15 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     top: 10
+  },
+  botao:{
+    height: 70,
+    width: 325,
+    backgroundColor: "#110122",
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: "#9356F1",
+    borderWidth: 3,
   }
 })
