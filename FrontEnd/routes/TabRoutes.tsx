@@ -24,6 +24,7 @@ export function TabRoutes() {
                     paddingBottom: 5,
                     paddingTop: insets.top,
                     overflow: 'visible',
+                    backgroundColor: '#110122',
                 }
             }}
         >

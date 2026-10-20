@@ -1,7 +1,7 @@
 {
-  "name": "pac",
+  "name": "App-de-Seguranca-Digital",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "./FrontEnd/index.ts",
   "dependencies": {
     "@react-navigation/bottom-tabs": "^7.21.0",
     "@react-navigation/native-stack": "^7.21.0",

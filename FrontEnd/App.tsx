@@ -11,7 +11,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       NavigationBar.setVisibilityAsync('hidden');
-      NavigationBar.setBehaviorAsync('sticky-immersive');
+      NavigationBar.setStyle('auto');
     }
   }, []);
   return (

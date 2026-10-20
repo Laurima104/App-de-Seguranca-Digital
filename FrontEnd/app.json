@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Pac",
-    "slug": "Pac",
+    "name": "App-de-Seguranca-Digital",
+    "slug": "App-de-Seguranca-Digital",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,6 +17,11 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
+    },
+    "androidNavigationBar": {
+      "visible": "hidden",
+      "barStyle": "light-content",
+      "backgroundColor": "#110122"
     },
     "web": {
       "favicon": "./assets/favicon.png"
