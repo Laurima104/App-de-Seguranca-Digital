@@ -12,7 +12,7 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 3,
     top: 20,
     bottom: 20,
-    height: 705,
+    height: 630,
     width: 355,
     alignItems: 'center',
     borderRadius: 24,
@@ -21,10 +21,11 @@ export const globalStyles = StyleSheet.create({
     font: 'Orbitron',
     fontSize: 30,
     color: '#EDE9F8',
+    fontWeight: 'bold'
   },
   conteudo:{
     color: '#EDE9F8',
-    fontSize: 45,
+    fontSize: 40,
     textAlign: 'center',
     font: 'Electrolize',
   },
@@ -46,5 +47,18 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: "#9356F1",
     borderWidth: 3,
+  },
+  imageIcons:{
+    height: 50,
+    width: 50,
+    borderRadius: 12,
+    alignContent: 'center',
+    justifyContent: 'center'
+  },
+  contentRow:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 20
   }
 })

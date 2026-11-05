@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScren"
 
 const Tab = createBottomTabNavigator();
@@ -19,16 +20,25 @@ export function TabRoutes() {
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    height: 45
-                     + insets.bottom,
-                    paddingBottom: 5,
+                    height: 60 + insets.bottom,
+                    paddingBottom: insets.bottom,
                     paddingTop: insets.top,
                     overflow: 'visible',
                     backgroundColor: '#110122',
                 }
             }}
         >
-            <Tab.Screen name="Tela Inicial" component={HomeScreen} />
+            <Tab.Screen name="Menu Principal" component={HomeScreen} 
+                options={{
+                    tabBarIcon: ({color, size}) => (
+                        <Ionicons
+                            name="home"
+                            size={size}
+                            color={'#EDE9F8'}
+                        />      
+                    )
+                }}
+            />
         </Tab.Navigator>
     )
 }

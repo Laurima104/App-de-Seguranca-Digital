@@ -18,11 +18,16 @@
       },
       "predictiveBackGestureEnabled": false
     },
-    "androidNavigationBar": {
-      "visible": "hidden",
-      "barStyle": "light-content",
-      "backgroundColor": "#110122"
-    },
+    "plugins": [
+      [
+        "expo-navigation-bar",
+        {
+          "hidden": true,
+          "enforceContrast": false,
+          "style": "dark"
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     }
