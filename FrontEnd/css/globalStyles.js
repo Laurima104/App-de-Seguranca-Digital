@@ -46,7 +46,12 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: "#9356F1",
-    borderWidth: 3,
+    borderWidth: 2,
+  },
+  textoBotao:{
+    font: 'Eletrolize',
+    fontSize: 20,
+    color: '#EDE9F8'
   },
   imageIcons:{
     height: 50,
@@ -60,5 +65,24 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 20
-  }
+  },
+  divider: {
+    height: 1,
+    width: 349,
+    backgroundColor: '#EDE9F8',
+    marginVertical: 15,
+  },
+  progressBarBackground: {
+    width: '85%',
+    height: 22,
+    backgroundColor: '#E2D9F3',
+    borderRadius: 11,
+    overflow: 'hidden',
+  },
+  progressBarFill: {
+    width: '100%', // reescrever o tamanho na tela
+    height: 10,
+    backgroundColor: '#11052C', // Progresso escuro preenchido
+    borderRadius: 11,
+  },
 })

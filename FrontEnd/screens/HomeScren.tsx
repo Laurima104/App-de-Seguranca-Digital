@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button, Touchable, TouchableOpacity } from "react-native";
 import  {globalStyles} from  '../css/globalStyles';
 
 interface SpacerProps{
@@ -27,9 +27,34 @@ const HomeScreen: React.FC = () => {
         </View>
         <Spacer size={30}/>
         <View style={globalStyles.contentRow}>
-          <Text style={globalStyles.conteudo}>
+          <Text style={[globalStyles.conteudo]}>
             Bem-Vindo, Nickname!
           </Text>
+        </View>
+        <View style={globalStyles.divider}/>
+        <View style={[globalStyles.contentRow, {flexDirection: 'column', alignItems:'center'}]}>
+          <Text style={[globalStyles.conteudo, {fontSize: 20}]}>
+            Progresso Atual:
+          </Text>
+          <View style={globalStyles.progressBarBackground}>
+            <View style={[globalStyles.progressBarFill, { width: '34%'}]}/>
+          </View>
+          <Text style={[globalStyles.conteudo, {fontSize: 15}]}>
+            Descrição...
+          </Text>
+        </View>
+        <View style={globalStyles.divider}/>
+        <View style={[globalStyles.contentRow, {flexDirection: 'column'}]}>
+          <TouchableOpacity style={globalStyles.botao}>
+            <Text style={globalStyles.textoBotao}>
+              Continuar Nível Atual
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={globalStyles.botao}>
+            <Text style={globalStyles.textoBotao}>
+              Níveis
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
