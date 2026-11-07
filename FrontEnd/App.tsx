@@ -10,7 +10,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       NavigationBar.setHidden(false);
-      //NavigationBar.setStyle('');
+      //NavigationBar.setStyle('dark');
     }
   }, []);
   return (

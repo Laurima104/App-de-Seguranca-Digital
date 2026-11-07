@@ -27,7 +27,7 @@ const HomeScreen: React.FC = () => {
         </View>
         <Spacer size={30}/>
         <View style={globalStyles.contentRow}>
-          <Text style={[globalStyles.conteudo]}>
+          <Text style={[globalStyles.conteudo, {fontFamily: 'Orbitron'}]}>
             Bem-Vindo, Nickname!
           </Text>
         </View>

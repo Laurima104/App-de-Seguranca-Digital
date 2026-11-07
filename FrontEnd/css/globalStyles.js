@@ -73,11 +73,12 @@ export const globalStyles = StyleSheet.create({
     marginVertical: 15,
   },
   progressBarBackground: {
-    width: '85%',
-    height: 22,
-    backgroundColor: '#E2D9F3',
-    borderRadius: 11,
-    overflow: 'hidden',
+    height: 15,
+    width: 300,
+    backgroundColor: '#EDE9F8', // Tom claro de fundo da barra
+    borderRadius: 20,
+    justifyContent: 'center',
+    paddingHorizontal: 5, // Pequeno espaçamento interno para o efeito da imagem
   },
   progressBarFill: {
     width: '100%', // reescrever o tamanho na tela
