@@ -6,6 +6,10 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "#110122",
     alignItems: 'center'
   },
+  imgBackground: {
+    resizeMode: "cover",
+    overlayColor: "#4A3989",
+  },
   container: {
     backgroundColor: "#4A3989",
     borderColor: "#9356F1",
@@ -85,5 +89,12 @@ export const globalStyles = StyleSheet.create({
     height: 10,
     backgroundColor: '#11052C', // Progresso escuro preenchido
     borderRadius: 11,
+  },
+  inputText: {
+    borderColor: "#9356F1",
+    backgroundColor: "#110122",
+    width: 375,
+    height: 40,
+    borderRadius: 8,
   },
 })
