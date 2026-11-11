@@ -1,5 +1,14 @@
 {
   "plugins": [
-    "expo-font"
+    "expo-font",
+    "expo-secure-store",
+    [
+      "expo-image-picker",
+      {
+        "photosPermission": "O aplicativo usa a foto escolhida por você para exibi-la no perfil.",
+        "cameraPermission": false,
+        "microphonePermission": false
+      }
+    ]
   ]
 }
