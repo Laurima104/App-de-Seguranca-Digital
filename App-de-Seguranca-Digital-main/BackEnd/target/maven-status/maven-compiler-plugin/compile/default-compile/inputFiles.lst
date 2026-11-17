@@ -1,0 +1,8 @@
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\BackendApplication.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\Controller\UsuarioController.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\dto\CadastroRequest.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\dto\LoginRequest.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\dto\UsuarioResponse.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\model\Usuario.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\Repository\UsuarioRepository.java
+C:\Users\ebert\Downloads\App-de-Seguranca-Digital-main\App-de-Seguranca-Digital-main\BackEnd\src\main\java\com\seguranca\backend\service\AuthService.java
