@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Alert, Pressable, TextInput, View } from 'react-native';
+import { Pressable, TextInput, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { RootStackParamList } from '../routes/StackRoutes';
 import { AuthShell, AppText, ActionButton, usePalette } from '../components/ui';
 import { SignUpPayload, signUp } from '../services/auth';
+import { notify } from '../services/notify';
 import { usePreferences } from '../state/PreferencesContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
@@ -23,7 +24,7 @@ export default function SignUpScreen({ navigation }: Props) {
 
   const submit = async () => {
     if (!displayName.trim() || !nickname.trim() || !/^\S+@\S+\.\S+$/.test(email.trim()) || !password || password !== confirmation || !acceptedTerms) {
-      Alert.alert('Confira o cadastro', 'Preencha nome, nickname, e-mail válido e senhas iguais. Leia e aceite o Termo e a Política.');
+      notify('Confira o cadastro', 'Preencha nome, nickname, e-mail válido e senhas iguais. Leia e aceite o Termo e a Política.');
       return;
     }
     setSubmitting(true);
@@ -32,7 +33,7 @@ export default function SignUpScreen({ navigation }: Props) {
       await signUp(payload);
       navigation.navigate('EmailVerification', { email: email.trim(), purpose: 'signup' });
     } catch (error) {
-      Alert.alert('Cadastro indisponível', error instanceof Error ? error.message : 'Tente novamente mais tarde.');
+      notify('Cadastro indisponível', error instanceof Error ? error.message : 'Tente novamente mais tarde.');
     } finally {
       setSubmitting(false);
     }

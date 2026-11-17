@@ -7,6 +7,11 @@ import { NavigationBar } from 'expo-navigation-bar';
 import { StackRoutes } from './routes/StackRoutes';
 import { PreferencesProvider, usePreferences } from './state/PreferencesContext';
 import { AuthProvider } from './state/AuthContext';
+import { configureAuthApi } from './services/auth';
+import { httpAuthApi } from './services/httpAuthApi';
+
+// Liga o front ao back end (precisa rodar antes de o app renderizar)
+configureAuthApi(httpAuthApi);
 
 function AppNavigation() {
   const { preferences } = usePreferences();

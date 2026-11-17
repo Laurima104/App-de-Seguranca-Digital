@@ -1,8 +1,0 @@
-com\seguranca\backend\model\Usuario.class
-com\seguranca\backend\Repository\UsuarioRepository.class
-com\seguranca\backend\dto\LoginRequest.class
-com\seguranca\backend\dto\UsuarioResponse.class
-com\seguranca\backend\BackendApplication.class
-com\seguranca\backend\dto\CadastroRequest.class
-com\seguranca\backend\service\AuthService.class
-com\seguranca\backend\Controller\UsuarioController.class

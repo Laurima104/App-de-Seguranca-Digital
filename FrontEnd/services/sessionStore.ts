@@ -1,23 +1,47 @@
+import { Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { AuthSession } from './auth';
+import type { AuthSession } from './auth';
 
-const accessTokenKey = 'app.auth.access-token';
-const refreshTokenKey = 'app.auth.refresh-token';
+const ACCESS_KEY = 'auth.accessToken';
+const REFRESH_KEY = 'auth.refreshToken';
 
-export async function saveSession(session: AuthSession) {
-  await SecureStore.setItemAsync(accessTokenKey, session.accessToken);
-  if (session.refreshToken) await SecureStore.setItemAsync(refreshTokenKey, session.refreshToken);
-  else await SecureStore.deleteItemAsync(refreshTokenKey);
+async function setItem(key: string, value: string) {
+  if (Platform.OS === 'web') {
+    window.localStorage.setItem(key, value);
+  } else {
+    await SecureStore.setItemAsync(key, value);
+  }
 }
 
-export async function readSessionTokens() {
-  const [accessToken, refreshToken] = await Promise.all([
-    SecureStore.getItemAsync(accessTokenKey),
-    SecureStore.getItemAsync(refreshTokenKey),
-  ]);
-  return { accessToken, refreshToken };
+async function getItem(key: string): Promise<string | null> {
+  if (Platform.OS === 'web') {
+    return window.localStorage.getItem(key);
+  }
+  return SecureStore.getItemAsync(key);
+}
+
+async function removeItem(key: string) {
+  if (Platform.OS === 'web') {
+    window.localStorage.removeItem(key);
+  } else {
+    await SecureStore.deleteItemAsync(key);
+  }
+}
+
+export async function saveSession(session: AuthSession) {
+  await setItem(ACCESS_KEY, session.accessToken);
+  if (session.refreshToken) await setItem(REFRESH_KEY, session.refreshToken);
+  else await removeItem(REFRESH_KEY);
+}
+
+export async function readSessionTokens(): Promise<{ accessToken: string | null; refreshToken: string | null }> {
+  return {
+    accessToken: await getItem(ACCESS_KEY),
+    refreshToken: await getItem(REFRESH_KEY),
+  };
 }
 
 export async function clearSession() {
-  await Promise.all([SecureStore.deleteItemAsync(accessTokenKey), SecureStore.deleteItemAsync(refreshTokenKey)]);
+  await removeItem(ACCESS_KEY);
+  await removeItem(REFRESH_KEY);
 }

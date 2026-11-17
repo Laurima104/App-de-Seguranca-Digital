@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Alert, Pressable, TextInput, View } from 'react-native';
+import { Pressable, TextInput, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { RootStackParamList } from '../routes/StackRoutes';
 import { AuthShell, AppText, ActionButton, usePalette } from '../components/ui';
 import { useAuth } from '../state/AuthContext';
 import { usePreferences } from '../state/PreferencesContext';
+import { notify } from '../services/notify';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 export default function LoginScreen({ navigation }: Props) {
@@ -19,7 +20,7 @@ export default function LoginScreen({ navigation }: Props) {
 
   const submit = async () => {
     if (!/^\S+@\S+\.\S+$/.test(email.trim()) || !password) {
-      Alert.alert('Confira seus dados', 'Informe um e-mail válido e a sua senha.');
+      notify('Confira seus dados', 'Informe um e-mail válido e a sua senha.');
       return;
     }
     setSubmitting(true);
@@ -27,7 +28,7 @@ export default function LoginScreen({ navigation }: Props) {
       await signIn({ email: email.trim(), password });
       navigation.reset({ index: 0, routes: [{ name: 'Tabs' }] });
     } catch (error) {
-      Alert.alert('Não foi possível entrar', error instanceof Error ? error.message : 'Tente novamente mais tarde.');
+      notify('Não foi possível entrar', error instanceof Error ? error.message : 'Tente novamente mais tarde.');
     } finally {
       setSubmitting(false);
     }
