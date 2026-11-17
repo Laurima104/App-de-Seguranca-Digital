@@ -39,3 +39,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Back end (Spring Boot / Maven)
+BackEnd/target/
+BackEnd/src/main/resources/application.properties
