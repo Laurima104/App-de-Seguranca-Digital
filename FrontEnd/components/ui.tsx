@@ -12,7 +12,7 @@ export const colors = {
 export function usePalette() {
   const { preferences } = usePreferences();
   if (preferences.highContrast) return { background: colors.highBackground, surface: colors.highSurface, text: colors.highText, muted: colors.highText, accent: '#FFFFFF', border: '#FFFFFF' };
-  if (preferences.theme === 'light') return { background: '#F5F0FC', surface: '#FFFFFF', text: '#24133A', muted: '#514263', accent: '#7138C8', border: '#7138C8' };
+  if (preferences.theme === 'light') return { background: '#EEE5FA', surface: '#E0D1F2', text: '#24133A', muted: '#514263', accent: '#7138C8', border: '#9B73CE' };
   return { background: colors.background, surface: colors.surface, text: colors.text, muted: colors.muted, accent: colors.accent, border: colors.border };
 }
 

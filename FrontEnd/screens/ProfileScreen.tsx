@@ -35,7 +35,10 @@ export default function ProfileScreen() {
     try {
       await saveProfile({ displayName: displayName.trim(), nickname: nickname.trim(), photoUri });
       setEditing(false);
-      Alert.alert('Perfil atualizado', 'As alterações foram salvas na sua conta.');
+      const photoChanged = photoUri !== (user.photoUri ?? null);
+      Alert.alert('Perfil atualizado', photoChanged
+        ? 'Nome e nickname foram salvos na sua conta. A foto fica apenas nesta sessão; o backend ainda não oferece armazenamento de fotos.'
+        : 'Nome e nickname foram salvos na sua conta.');
     } catch (error) {
       Alert.alert('Não foi possível salvar', error instanceof Error ? error.message : 'Tente novamente mais tarde.');
     } finally {

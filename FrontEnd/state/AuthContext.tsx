@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { AuthenticatedUser, ProfileChanges, SignInCredentials, getCurrentUser, hasAuthApi, refreshSession, revokeSession, signIn as authenticate, updateProfile as patchProfile } from '../services/auth';
+import { AuthenticatedUser, ProfileChanges, SignInCredentials, changePassword as updatePassword, getCurrentUser, hasAuthApi, refreshSession, revokeSession, signIn as authenticate, updateProfile as patchProfile } from '../services/auth';
 import { clearSession, readSessionTokens, saveSession } from '../services/sessionStore';
 
 type AuthContextValue = {
@@ -9,6 +9,7 @@ type AuthContextValue = {
   signOut: () => Promise<void>;
   updateUser: (user: AuthenticatedUser) => void;
   saveProfile: (changes: ProfileChanges) => Promise<AuthenticatedUser>;
+  changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
 };
 const AuthContext = createContext<AuthContextValue | null>(null);
 
@@ -50,9 +51,9 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
   }, []);
 
   const signOut = useCallback(async () => {
-    const { refreshToken } = await readSessionTokens().catch(() => ({ accessToken: null, refreshToken: null }));
+    const { accessToken } = await readSessionTokens().catch(() => ({ accessToken: null, refreshToken: null }));
     try {
-      if (refreshToken && hasAuthApi()) await revokeSession(refreshToken);
+      if (accessToken && hasAuthApi()) await revokeSession(accessToken);
     } catch {
       // The local session is still removed if the backend cannot revoke the refresh token.
     } finally {
@@ -65,12 +66,20 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
     if (!user) throw new Error('Entre na sua conta para editar o perfil.');
     const { accessToken } = await readSessionTokens();
     if (!accessToken) throw new Error('A sessão expirou. Entre novamente para editar o perfil.');
-    const updatedUser = await patchProfile(user.id, changes, accessToken);
-    setUser(updatedUser);
-    return updatedUser;
+    const updatedUser = await patchProfile(changes, accessToken);
+    const mergedUser = { ...updatedUser, photoUri: changes.photoUri === undefined ? user.photoUri : changes.photoUri ?? undefined };
+    setUser(mergedUser);
+    return mergedUser;
   }, [user]);
 
-  const value = useMemo(() => ({ user, isRestoring, signIn, signOut, updateUser: setUser, saveProfile }), [user, isRestoring, signIn, signOut, saveProfile]);
+  const changePassword = useCallback(async (currentPassword: string, newPassword: string) => {
+    if (!user) throw new Error('Entre na sua conta para alterar a senha.');
+    const { accessToken } = await readSessionTokens();
+    if (!accessToken) throw new Error('A sessão expirou. Entre novamente para alterar a senha.');
+    await updatePassword(currentPassword, newPassword, accessToken);
+  }, [user]);
+
+  const value = useMemo(() => ({ user, isRestoring, signIn, signOut, updateUser: setUser, saveProfile, changePassword }), [user, isRestoring, signIn, signOut, saveProfile, changePassword]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

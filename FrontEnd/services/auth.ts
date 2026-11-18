@@ -27,13 +27,14 @@ export interface AuthApi {
   resetPassword(email: string, recoveryToken: string, newPassword: string): Promise<void>;
   getCurrentUser(accessToken: string): Promise<AuthenticatedUser>;
   refreshSession(refreshToken: string): Promise<AuthSession>;
-  signOut(refreshToken: string): Promise<void>;
-  updateProfile(userId: string, changes: ProfileChanges, accessToken: string): Promise<AuthenticatedUser>;
+  signOut(accessToken: string): Promise<void>;
+  updateProfile(changes: ProfileChanges, accessToken: string): Promise<AuthenticatedUser>;
+  changePassword(currentPassword: string, newPassword: string, accessToken: string): Promise<void>;
 }
 
 let authApi: AuthApi | null = null;
 
-/** Call once from the API integration layer when that layer is added to the project. */
+/** Register the active API adapter during app initialization. */
 export function configureAuthApi(adapter: AuthApi) { authApi = adapter; }
 export function hasAuthApi() { return authApi !== null; }
 function api(): AuthApi {
@@ -48,5 +49,6 @@ export const verifyEmailCode = (email: string, code: string, purpose: Verificati
 export const resetPassword = (email: string, recoveryToken: string, newPassword: string) => api().resetPassword(email, recoveryToken, newPassword);
 export const getCurrentUser = (accessToken: string) => api().getCurrentUser(accessToken);
 export const refreshSession = (refreshToken: string) => api().refreshSession(refreshToken);
-export const revokeSession = (refreshToken: string) => api().signOut(refreshToken);
-export const updateProfile = (userId: string, changes: ProfileChanges, accessToken: string) => api().updateProfile(userId, changes, accessToken);
+export const revokeSession = (accessToken: string) => api().signOut(accessToken);
+export const updateProfile = (changes: ProfileChanges, accessToken: string) => api().updateProfile(changes, accessToken);
+export const changePassword = (currentPassword: string, newPassword: string, accessToken: string) => api().changePassword(currentPassword, newPassword, accessToken);

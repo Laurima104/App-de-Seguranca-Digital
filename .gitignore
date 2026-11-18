@@ -30,8 +30,13 @@ yarn-error.*
 .DS_Store
 *.pem
 
+# Windows Explorer metadata
+Thumbs.db
+Desktop.ini
+
 # local env files
-.env*.local
+.env*
+!.env.example
 
 # typescript
 *.tsbuildinfo
@@ -42,4 +47,7 @@ yarn-error.*
 
 # Back end (Spring Boot / Maven)
 BackEnd/target/
-BackEnd/src/main/resources/application.properties
+BackEnd/src/main/resources/application-local.properties
+# Configurações locais de ferramentas de IA, não necessárias para o app
+.claude/
+**/.claude/
