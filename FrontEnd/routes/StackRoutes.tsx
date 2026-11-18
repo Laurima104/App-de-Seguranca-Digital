@@ -13,6 +13,7 @@ import RecoverAccountScreen from '../screens/RecoverAccountScreen';
 import RegistrationCompleteScreen from '../screens/RegistrationCompleteScreen';
 import HelpScreen from '../screens/HelpScreen';
 import LevelsScreen from '../screens/LevelsScreen';
+import ChangePasswordScreen from '../screens/ChangePasswordScreen';
 import { useAuth } from '../state/AuthContext';
 
 export type RootStackParamList = {
@@ -20,6 +21,7 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
+  ChangePassword: undefined;
   EmailVerification: { email: string; purpose: 'signup' | 'recovery' };
   RecoverAccount: { email: string; recoveryToken: string };
   RegistrationComplete: { email: string };
@@ -47,6 +49,7 @@ export function StackRoutes() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
       <Stack.Screen name="EmailVerification" component={EmailVerificationScreen} />
       <Stack.Screen name="RecoverAccount" component={RecoverAccountScreen} />
       <Stack.Screen name="RegistrationComplete" component={RegistrationCompleteScreen} />

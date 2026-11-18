@@ -50,6 +50,21 @@ O trabalho envolve etapas de planejamento, levantamento e análise de requisitos
 
 O repositório GitHub é utilizado para centralizar os arquivos do projeto, organizar o código-fonte e apoiar a colaboração entre os integrantes da equipe.
 
+## Estrutura do repositório
+
+```text
+App-de-Seguranca-Digital/
+├── BackEnd/       API Java/Spring Boot e configuração MySQL
+├── BancoDados/    schema SQL e instruções do banco
+├── FrontEnd/      aplicativo React Native/Expo em TypeScript
+├── .vscode/       preferências locais do VS Code
+├── app.json       configuração Expo da raiz
+├── package.json   dependências e scripts do frontend
+└── README.md      visão geral do projeto
+```
+
+Os arquivos de configuração necessários ao Expo permanecem na raiz para que `npm run start` continue funcionando. Cada área mantém sua documentação junto aos arquivos que descreve.
+
 ## Status do projeto
 
 O projeto está estruturado a partir de sua documentação oficial, que reúne requisitos, planejamento, cronograma, estrutura analítica do projeto (EAP) e gerenciamento de riscos.

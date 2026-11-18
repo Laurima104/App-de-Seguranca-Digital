@@ -23,8 +23,8 @@ export default function SignUpScreen({ navigation }: Props) {
   const inputStyle = { color: palette.text, backgroundColor: palette.background, borderColor: palette.accent, borderWidth: 1.5, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 14, fontSize: 16 * preferences.fontScale } as const;
 
   const submit = async () => {
-    if (!displayName.trim() || !nickname.trim() || !/^\S+@\S+\.\S+$/.test(email.trim()) || !password || password !== confirmation || !acceptedTerms) {
-      notify('Confira o cadastro', 'Preencha nome, nickname, e-mail válido e senhas iguais. Leia e aceite o Termo e a Política.');
+    if (!displayName.trim() || !nickname.trim() || !/^\S+@\S+\.\S+$/.test(email.trim()) || password.length < 8 || password !== confirmation || !acceptedTerms) {
+      notify('Confira o cadastro', 'Preencha nome, nickname, e-mail válido, senha com pelo menos 8 caracteres e senhas iguais. Leia e aceite o Termo e a Política.');
       return;
     }
     setSubmitting(true);

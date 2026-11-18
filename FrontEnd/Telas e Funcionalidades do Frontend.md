@@ -18,9 +18,9 @@ Este diretório contém a aplicação mobile em React Native. As telas fazem par
 
 A barra inferior só é exibida dentro da navegação protegida, depois que existe usuário autenticado.
 
-- **Página inicial (`HomeScren`)**: usa os dados da conta para boas-vindas e progresso; permite continuar o nível atual ou abrir os níveis. Dados ausentes da API não são substituídos por dados fictícios.
+- **Página inicial (`HomeScreen`)**: usa os dados da conta para boas-vindas e progresso; permite continuar o nível atual ou abrir os níveis. Dados ausentes da API não são substituídos por dados fictícios.
 - **Perfil (`ProfileScreen`)**: apresenta os dados da conta autenticada e permite editar nome, apelido e foto. A atualização passa pelo serviço associado à sessão atual.
-- **Configurações (`SettingsScreen`)**: oferece preferências de notificações locais, acessibilidade, ajuda, sobre, alteração de senha e saída da conta. Notificações são preferências armazenadas; a entrega de notificações depende de integração futura.
+- **Configurações (`SettingsScreen`)**: oferece preferências de notificações locais, personalização e acessibilidade em uma única opção, ajuda, sobre, alteração autenticada de senha e saída da conta. Notificações são preferências armazenadas; a entrega depende da integração do serviço de notificações.
 - **Níveis (`LevelsScreen`)**: carrega a lista da API, com estados de carregamento, erro e lista vazia. A tela não inventa conteúdo de níveis ou aulas.
 
 ### Recursos públicos e institucionais
@@ -58,6 +58,6 @@ Leia o QR code com o Expo Go. Também estão disponíveis os scripts `npm run an
 
 ## Limites atuais
 
-Autenticação, cadastro, verificação, recuperação de senha, atualização remota de perfil e níveis já possuem contratos de integração, mas precisam de adaptadores conectados a um backend real. Não há conta de demonstração nem persistência remota simulada. O controle de leitor de tela e a área de ajuda são pontos preparados visualmente, ainda sem comportamento de leitura/serviço de conteúdo.
+Cadastro e login estão conectados ao backend. Perfil (nome e nickname), consulta da conta, alteração autenticada de senha e logout usam token de sessão obtido no login; o backend associa cada atualização ao usuário dessa sessão. A URL é configurada por `EXPO_PUBLIC_API_URL` (para Expo Go em aparelho físico, use o IP local do computador e a porta 8080). Verificação e recuperação de e-mail, renovação de sessão, persistência remota de foto e níveis ainda dependem de serviços/endpoints. O controle de leitor de tela e a área de ajuda são pontos preparados visualmente, sem comportamento de leitura/serviço de conteúdo.
 
-Consulte [`Realização da Integração.md`](./Realização%20da%20Integração.md) e [`services/README.md`](./services/README.md) para instruções de integração.
+Consulte [`services/README.md`](./services/README.md) e [`../BackEnd/README.md`](../BackEnd/README.md) para instruções disponíveis de integração e execução.

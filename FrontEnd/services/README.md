@@ -1,21 +1,20 @@
-# Integração da API de contas
+# Serviços e integração HTTP
 
-As telas usam o contrato `AuthApi` definido em `auth.ts`. A implementação do backend deve fornecer um adaptador para:
+`App.tsx` registra `httpAuthApi` em `configureAuthApi` antes de montar o estado de autenticação. A URL da API vem de `EXPO_PUBLIC_API_URL`; em Expo Go num celular físico, informe o IPv4 do computador na rede local e a porta `8080`. O exemplo está em `.env.example` na raiz do repositório.
 
-- login e cadastro;
-- envio e validação de códigos de e-mail;
-- recuperação de senha;
-- consulta do usuário autenticado e renovação/revogação de sessão;
-- atualização de perfil.
+## Implementado
 
-O contrato de atualização aceita `displayName`, `nickname` e `photoUri`. Para a foto, o adaptador deve enviar o arquivo local ao backend e substituir a URI local pela URI remota retornada antes de concluir a atualização.
+- `POST /usuarios`: cadastro com nome de exibição, nickname, e-mail, senha e aceite dos documentos. A senha é enviada por HTTPS em produção e armazenada no backend como BCrypt hash.
+- `POST /login`: valida e-mail/senha e devolve os dados públicos do usuário e o token de sessão.
+- `GET /usuarios/me`: carrega o usuário associado à sessão.
+- `PATCH /usuarios/me`: atualiza nome e nickname da conta autenticada sem aceitar ID do cliente.
+- `PUT /usuarios/me/senha`: altera a senha validando a senha atual.
+- `POST /logout`: revoga a sessão atual.
+- `services/auth.ts`: declara a interface `AuthApi` e os tipos usados pelas telas.
+- `services/sessionStore.ts`: persiste o token aleatório de sessão em armazenamento seguro no dispositivo.
 
-Depois de criar o adaptador, importe `configureAuthApi` e chame-o antes de montar `AuthProvider` em `App.tsx`. O adaptador é responsável por mapear os contratos da API real para os tipos do frontend. Nenhum endpoint foi presumido neste projeto.
+## Ainda não implementado no backend
 
-O estado mantém o usuário autenticado em memória e persiste somente access/refresh tokens com `expo-secure-store`. O progresso, o perfil e os demais dados são sempre obtidos da API; não há conta ou progresso de demonstração.
+Verificação e envio de código de e-mail, recuperação de senha, renovação de sessão, persistência remota da foto e API de níveis. O adaptador lança erro explícito para as operações ausentes; não há persistência simulada. `learning.ts` contém o contrato futuro, mas nenhum adaptador está registrado.
 
-`AuthenticatedUser` contém os campos opcionais de nível e estatísticas usados na página inicial e no perfil. Se o backend ainda não retornar esses campos, as telas exibem o estado de dados indisponíveis em vez de valores fictícios.
-
-## Integração de níveis
-
-`learning.ts` define `LearningApi.listLevels` para preencher a navegação de níveis a partir dos dados da conta. Chame `configureLearningApi` com o adaptador correspondente antes de abrir `LevelsScreen`. A tela apresenta estados de carregamento, erro e lista vazia sem fabricar níveis. O visualizador das aulas pertence à futura área de aprendizagem e poderá ser ligado ao selecionar um nível.
+Não conecte o app mobile diretamente ao MySQL. Todas as operações com dados devem passar pela API, que precisa validar a identidade e autorização do usuário. Consulte [`../../BackEnd/README.md`](../../BackEnd/README.md) para iniciar a API e [`../../BancoDados/README.md`](../../BancoDados/README.md) para criar o schema MySQL.
